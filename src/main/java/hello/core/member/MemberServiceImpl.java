@@ -6,7 +6,8 @@ public class MemberServiceImpl implements MemberService{
 
     /*
     외부에서 어떤 구현체를 사용할지 결정해줌. MemberServiceImpl는 다형성에 대한 Act만 충실히 해주면 됨!
-    => SRP!!
+    1. 하나의 인터페이스에만 의존 : DIP, OCP
+    2. 하나의 클래스가 하나의 역할을 수행 : SRP
     */
     private final MemberRepository memberRepository;
 
