@@ -30,7 +30,6 @@ public class AppConfig {
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
-
     // 할인정책에 대해 바꾸고 싶다면 아래 메서드 한 줄만 바꿔주면 된다.
     @Bean
     public DiscountPolicy discountPolicy(){
