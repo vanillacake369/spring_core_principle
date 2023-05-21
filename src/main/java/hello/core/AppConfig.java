@@ -23,7 +23,7 @@ public class AppConfig {
     }
     // 생성자 주입에 관련된 메서드는 각 행동이 뚜렷히 보이게 리팩토링하도록 한다.
     @Bean
-    public static MemoryMemberRepository memberRepository() {
+    public MemoryMemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
     @Bean

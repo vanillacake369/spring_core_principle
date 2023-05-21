@@ -6,7 +6,11 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService {
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
@@ -15,9 +19,11 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    @Autowired
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy fixDiscountPolicy) {
         this.memberRepository = memberRepository;
-        this.discountPolicy = discountPolicy;
+        this.discountPolicy = fixDiscountPolicy;
+//        this.discountPolicy = rateDiscountPolicy;
     }
 
     @Override
@@ -27,5 +33,9 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }

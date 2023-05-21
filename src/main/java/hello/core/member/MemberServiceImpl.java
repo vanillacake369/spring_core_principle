@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 //    MemberServiceImpl가 어떤 구현체를 사용할지 직접 결정
 //    private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -11,6 +15,7 @@ public class MemberServiceImpl implements MemberService{
     */
     private final MemberRepository memberRepository;
 
+    @Autowired
     public MemberServiceImpl(MemoryMemberRepository memoryMemberRepository) {
         this.memberRepository = memoryMemberRepository;
     }
@@ -35,5 +40,9 @@ public class MemberServiceImpl implements MemberService{
          * MemoryMemberRepository : store.get(memberId);
          * */
         return memberRepository.findById(memberId);
+    }
+
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
